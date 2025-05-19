@@ -3,6 +3,7 @@ package com.weighttracker.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
@@ -173,6 +174,7 @@ public class WeightController {
         // 書き出し用のペンを準備
         PrintWriter writer = response.getWriter();
         // CSVのヘッダーを書き込む("ID,体重,記録日")
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");//追記
         writer.println("ID,UserID,Weight,Timestamp");
 
         // データを1行ずつ書き出す
@@ -181,7 +183,6 @@ public class WeightController {
                 record.getId(), 
                 record.getUserId(), 
                 record.getWeight(), 
-                record.getRecordedDate(),
                 record.getTimestamp()));
 
         }
